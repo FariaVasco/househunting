@@ -4,6 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import requests
+import config as cfg
+
 
 def funda(existing_houses):
 
@@ -13,11 +15,8 @@ def funda(existing_houses):
     driver = webdriver.Chrome()
     wait = WebDriverWait(driver, 20)
 
-    location = 'Amsterdam'
-    max_price = 1750
-    min_rooms = 3
     # Load the search results page with Selenium WebDriver
-    url = f'https://www.funda.nl/huur/{location}/{available}/0-{str(max_price)}/{min_rooms}+kamers/{"" if has_balcony else "-"}balkon/'
+    url = f'https://www.funda.nl/huur/{cfg.location}/{available}/0-{str(cfg.max_price)}/{cfg.min_rooms}+kamers/{"" if has_balcony else "-"}balkon/'
     # driver.get(url)
 
     response = requests.get(url)

@@ -3,16 +3,13 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import re
 import uuid
+import config as cfg
 
 
 def pararius(existing_houses):
     new_pararius_houses = []
 
-    location = 'amsterdam'
-    max_price = 1750
-    min_rooms = 3
-
-    url = f"https://www.pararius.nl/huurwoningen/{location}/0-{max_price}/{min_rooms}-slaapkamers"
+    url = f"https://www.pararius.nl/huurwoningen/{cfg.location}/0-{cfg.max_price}/{cfg.min_rooms}-slaapkamers"
 
     # Set up Selenium options
     options = Options()
@@ -58,9 +55,9 @@ def pararius(existing_houses):
         full_link = 'https://www.pararius.nl' + link
 
         if full_link not in existing_houses:
-            if int(re.findall(r'\d+', price)[0]) <= 1750:
-                if 'Amsterdam' in address:
-                    if int(re.findall(r'\d+', rooms)[0]) >= 3:
+            if int(re.findall(r'\d+', price)[0]) <= cfg.max_price:
+                if cfg.location in address.lower():
+                    if int(re.findall(r'\d+', rooms)[0]) >= cfg.min_rooms:
                         new_pararius_houses.append({'house_id': uuid.uuid4(),
                                                     'url': full_link,
                                                     'address': address,

@@ -23,6 +23,7 @@ for customer in customers:
     # if customer_links:
     for link in new_houses:
         links_to_send.append(link)
-    send_email(links_to_send, customer)
+    if links_to_send:
+        send_email(links_to_send, customer)
 
 add_new_houses(new_houses)

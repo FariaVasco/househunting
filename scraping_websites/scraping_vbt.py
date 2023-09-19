@@ -1,6 +1,7 @@
 import requests
 import json
 import uuid
+import config as cfg
 
 
 def vbt(existing_houses):
@@ -20,9 +21,9 @@ def vbt(existing_houses):
             full_link = 'https://vbtverhuurmakelaars.nl' + house['url']
             if full_link not in existing_houses:
                 if house['status']['name'] == 'available':
-                    if house['address']['city'] == 'Amsterdam':
-                        if house['prices']['rental']['price'] <= 1750:
-                            if house['rooms'] >= 3:
+                    if house['address']['city'].lower() == cfg.location:
+                        if house['prices']['rental']['price'] <= cfg.max_price:
+                            if house['rooms'] >= cfg.min_rooms:
                                 new_vbt_houses.append({'house_id': uuid.uuid4(),
                                                        'url': full_link,
                                                        'city': house['address']['city'],
