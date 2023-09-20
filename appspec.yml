@@ -5,10 +5,10 @@ files:
     destination: /home/ec2-user/househunting/
 hooks:
   AfterInstall:
-   - location: setup.sh
-     timeout: 300
-     runas: root
+    - location: /setup.sh
+      timeout: 300
+      runas: root
   ApplicationStart:
-   - location: run.sh
-     timeout: 300
-     runas: root
+    - location: /run.sh
+      timeout: 300
+      runas: root
