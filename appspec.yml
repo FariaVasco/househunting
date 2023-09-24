@@ -1,14 +1,18 @@
 version: 0.0
 os: linux
 files:
-  - source: .
-    destination: /home/ec2-user/househunting/
+  - source: /index.html
+    destination: /var/www/html/
 hooks:
-  AfterInstall:
-    - location: /setup.sh
+  BeforeInstall:
+    - location: scripts/install_dependencies
       timeout: 300
       runas: root
-  ApplicationStart:
-    - location: /run.sh
+    - location: scripts/start_server
       timeout: 300
       runas: root
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root
+
