@@ -13,7 +13,7 @@ existing_houses = get_data('existing_houses')
 new_houses = []
 
 # new_houses.extend(funda(existing_houses))
-new_houses.extend(pararius(existing_houses))
+# new_houses.extend(pararius(existing_houses))
 new_houses.extend(vbt(existing_houses))
 
 links_to_send = []
