@@ -1,5 +1,9 @@
+import os
+import config as cfg
+
+
 def get_data(type_of_data):
-    with open("helpers/{}.txt".format(type_of_data), "r") as data:
+    with open(os.path.join(cfg.root_dir, "helpers/{}.txt".format(type_of_data)), "r") as data:
         lines = data.readlines()
 
         aggregated_data = []
