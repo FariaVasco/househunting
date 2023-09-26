@@ -23,7 +23,10 @@ for customer in customers:
     # if customer_links:
     for link in new_houses:
         links_to_send.append(link)
-        send_email(links_to_send, customer)
+        try:
+            send_email(links_to_send, customer)
+        except Exception as e:
+            print('Not sending email')
     if links_to_send:
         send_email(links_to_send, customer)
 
