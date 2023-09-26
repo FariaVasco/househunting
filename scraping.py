@@ -21,13 +21,9 @@ links_to_send = []
 for customer in customers:
     # customer_links = tailoring(new_houses, customer)
     # if customer_links:
+    send_email(existing_houses, customer)
     for link in new_houses:
         links_to_send.append(link)
-        try:
-            send_email(links_to_send, customer)
-        except Exception as e:
-            print('Not sending email')
-    if links_to_send:
         send_email(links_to_send, customer)
 
 add_new_houses(new_houses)
